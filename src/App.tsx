@@ -1,22 +1,25 @@
-import * as React from 'react';
-import './App.css';
+import * as React from 'react'
+import './App.css'
 
-import logo from './logo.svg';
+import AddTaskBox from './components/AddTaskBox'
 
 class App extends React.Component {
+  public addTask(text: string) {
+    alert(text)
+  }
+
   public render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1>My Todo</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
+        <div className="container">
+          <AddTaskBox onClickAddButton={this.addTask} />
+        </div>
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
