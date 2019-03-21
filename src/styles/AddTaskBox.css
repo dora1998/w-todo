@@ -1,7 +1,7 @@
 .addtaskbox {
     width: 600px;
     max-width: 100%;
-    margin: 0 auto;
+    margin: 0 auto 16px;
     display: flex;
 }
 .addtaskbox input {

@@ -4,12 +4,15 @@ import './styles/App.css'
 import { v1 as uuidv1 } from 'uuid'
 
 import AddTaskBox from './components/AddTaskBox'
+import FilterSwitch from './components/FilterSwitch'
 import TaskList from './components/TaskList'
 
+import Filter from './Filter'
 import { Task, useTasks } from './hooks/useTask'
 
 const App: React.FunctionComponent = () => {
   const [tasks, updateTasks] = useTasks([])
+  const [filter, setFilter] = React.useState(Filter.ALL)
 
   const addTask = (text: string) => {
     const task: Task = {
@@ -24,6 +27,8 @@ const App: React.FunctionComponent = () => {
   }
   const removeTask = (id: string) => updateTasks.remove(id)
 
+  const handleFilterChange = (newValue: string) => setFilter(newValue)
+
   return (
     <div className="App">
       <header>
@@ -31,6 +36,7 @@ const App: React.FunctionComponent = () => {
       </header>
       <div className="container">
         <AddTaskBox onClickAddButton={addTask} />
+        <FilterSwitch selected={filter} onChange={handleFilterChange} />
         <TaskList
           onToggleDone={setDone}
           onClickRemove={removeTask}

@@ -1,0 +1,23 @@
+.filterswitch {
+    width: 100%;
+    display: flex;
+    margin-top: 8px;
+}
+.filterswitch > label {
+    flex-grow: 1;
+    margin: 0 16px;
+    cursor: pointer;
+}
+
+.filterswitch input {
+    display: none;
+}
+.filterswitch div {
+    text-align: center;
+    padding: 8px;
+}
+.filterswitch input:checked + div {
+    color: #fff;
+    background-color: #000;
+    border-radius: 16px;
+}
