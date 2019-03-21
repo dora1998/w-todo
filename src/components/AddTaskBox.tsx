@@ -1,9 +1,11 @@
 import * as React from 'react'
 
-interface IAddTaskBoxProps {
+interface AddTaskBoxProps {
   onClickAddButton: (text: string) => void
 }
-function AddTaskBox(props: IAddTaskBoxProps) {
+const AddTaskBox: React.FunctionComponent<AddTaskBoxProps> = (
+  props: AddTaskBoxProps
+) => {
   const [text, setText] = React.useState('')
 
   function handlerChange(event: React.FormEvent<HTMLInputElement>) {

@@ -2,10 +2,12 @@ import * as React from 'react'
 
 import { Task } from '../hooks/useTask'
 
-interface ITaskListProps {
+interface TaskListProps {
   tasks: Task[]
 }
-function TaskList(props: ITaskListProps) {
+const TaskList: React.FunctionComponent<TaskListProps> = (
+  props: TaskListProps
+) => {
   const listItems = props.tasks.map(task => <li key={task.id}>{task.name}</li>)
   return <ul>{listItems}</ul>
 }
