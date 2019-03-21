@@ -10,12 +10,10 @@ const AddTaskBox: React.FunctionComponent<AddTaskBoxProps> = (
 ) => {
   const [text, setText] = React.useState('')
 
-  function handlerChange(event: React.FormEvent<HTMLInputElement>) {
+  function handleChange(event: React.FormEvent<HTMLInputElement>) {
     setText(event.currentTarget.value)
   }
-  function handlerClick(
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) {
+  function handleClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     props.onClickAddButton(text)
     setText('')
   }
@@ -25,10 +23,10 @@ const AddTaskBox: React.FunctionComponent<AddTaskBoxProps> = (
       <input
         type="text"
         value={text}
-        onChange={handlerChange}
+        onChange={handleChange}
         placeholder="タスクを入力..."
       />
-      <button className="button" onClick={handlerClick}>
+      <button className="button" onClick={handleClick}>
         作成
       </button>
     </div>
