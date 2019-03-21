@@ -26,13 +26,16 @@ const TaskList: React.FunctionComponent<TaskListProps> = (
 
   const listItems = props.tasks.map(task => (
     <li key={task.id}>
-      <input
-        type="checkbox"
-        checked={task.isDone}
-        onChange={handleCheckboxChange}
-        data-taskid={task.id}
-      />
-      <span>{task.name}</span>
+      <label htmlFor={`check_${task.id}`}>
+        <input
+          id={`check_${task.id}`}
+          type="checkbox"
+          checked={task.isDone}
+          onChange={handleCheckboxChange}
+          data-taskid={task.id}
+        />
+        <span className={task.isDone ? 'done' : ''}>{task.name}</span>
+      </label>
       <button
         className="button red"
         data-taskid={task.id}

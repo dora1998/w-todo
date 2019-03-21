@@ -17,6 +17,7 @@ const AddTaskBox: React.FunctionComponent<AddTaskBoxProps> = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) {
     props.onClickAddButton(text)
+    setText('')
   }
 
   return (

@@ -11,7 +11,16 @@ li {
     display: flex;
     align-items: center;
     width: 100%;
+    padding: 4px 8px;
+    border-bottom: 1px solid #aaa;
 }
-li > span {
+li:last-child {
+    border-bottom: none;
+}
+li > label {
     flex-grow: 1;
+}
+li span.done {
+    text-decoration: line-through;
+    color: #aaa;
 }
