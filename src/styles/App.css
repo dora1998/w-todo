@@ -20,6 +20,7 @@
   border-radius: 4px;
   padding: 4px 8px;
   cursor: pointer;
+  font-size: 1.1em;
 }
 .button:hover {
   background-color: #aaa;

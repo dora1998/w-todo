@@ -6,5 +6,8 @@
 }
 .addtaskbox input {
     flex-grow: 1;
-    border: 1px solid #ccc;
+    border: 2px solid #ccc;
+    font-size: 1.1em;
+    padding: 4px;
+    margin-right: 8px;
 }
