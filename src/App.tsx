@@ -22,12 +22,18 @@ const App: React.FunctionComponent = () => {
     }
     updateTasks.push(task)
   }
-  const setDone = (id: string, isDone: boolean) => {
+  const setDone = (id: string, isDone: boolean) =>
     updateTasks.setDone(id, isDone)
-  }
   const removeTask = (id: string) => updateTasks.remove(id)
 
   const handleFilterChange = (newValue: string) => setFilter(newValue)
+
+  const filteredTasks = tasks.filter(task => {
+    if (filter === Filter.ALL) {
+      return true
+    }
+    return filter === Filter.COMPLETED ? task.isDone : !task.isDone
+  })
 
   return (
     <div className="App">
@@ -40,7 +46,7 @@ const App: React.FunctionComponent = () => {
         <TaskList
           onToggleDone={setDone}
           onClickRemove={removeTask}
-          tasks={tasks}
+          tasks={filteredTasks}
         />
       </div>
     </div>
