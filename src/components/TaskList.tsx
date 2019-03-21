@@ -33,7 +33,11 @@ const TaskList: React.FunctionComponent<TaskListProps> = (
         data-taskid={task.id}
       />
       <span>{task.name}</span>
-      <button data-taskid={task.id} onClick={handleClickRemove}>
+      <button
+        className="button red"
+        data-taskid={task.id}
+        onClick={handleClickRemove}
+      >
         削除
       </button>
     </li>

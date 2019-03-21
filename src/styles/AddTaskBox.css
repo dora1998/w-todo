@@ -1,0 +1,10 @@
+.addtaskbox {
+    width: 600px;
+    max-width: 100%;
+    margin: 0 auto;
+    display: flex;
+}
+.addtaskbox input {
+    flex-grow: 1;
+    border: 1px solid #ccc;
+}

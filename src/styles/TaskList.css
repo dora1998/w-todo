@@ -1,0 +1,17 @@
+input[type="checkbox"] {
+    margin: 0 8px 0 0 ;
+}
+
+ul {
+    padding: 0;
+}
+
+li {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+li > span {
+    flex-grow: 1;
+}

@@ -1,9 +1,32 @@
+* {
+  box-sizing: border-box;
+}
+
 .App header {
   text-align: center;
+  display: block;
 }
 
 .container {
   width: 100%;
   max-width: 800px;
   margin: 0 auto;
+  padding: 8px;
+}
+
+.button {
+  color: #fff;
+  background-color: #000;
+  border-radius: 4px;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+.button:hover {
+  background-color: #aaa;
+}
+.red {
+  background-color: #CC0000;
+}
+.red:hover {
+  background-color: #EFC1C4;
 }

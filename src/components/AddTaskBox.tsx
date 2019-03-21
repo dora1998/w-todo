@@ -1,5 +1,7 @@
 import * as React from 'react'
 
+import '../styles/AddTaskBox.css'
+
 interface AddTaskBoxProps {
   onClickAddButton: (text: string) => void
 }
@@ -18,14 +20,16 @@ const AddTaskBox: React.FunctionComponent<AddTaskBoxProps> = (
   }
 
   return (
-    <div>
+    <div className="addtaskbox">
       <input
         type="text"
         value={text}
         onChange={handlerChange}
         placeholder="タスクを入力..."
       />
-      <button onClick={handlerClick}>作成</button>
+      <button className="button" onClick={handlerClick}>
+        作成
+      </button>
     </div>
   )
 }
