@@ -1,5 +1,5 @@
 import * as React from 'react'
-import './App.css'
+import './styles/App.css'
 
 import { v1 as uuidv1 } from 'uuid'
 
@@ -20,14 +20,18 @@ const App: React.FunctionComponent = () => {
     updateTasks.push(task)
   }
 
+  const setDone = (id: string, isDone: boolean) => {
+    updateTasks.setDone(id, isDone)
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
+      <header>
         <h1>My Todo</h1>
       </header>
       <div className="container">
         <AddTaskBox onClickAddButton={addTask} />
-        <TaskList tasks={tasks} />
+        <TaskList onToggleDone={setDone} tasks={tasks} />
       </div>
     </div>
   )
