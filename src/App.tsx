@@ -19,10 +19,10 @@ const App: React.FunctionComponent = () => {
     }
     updateTasks.push(task)
   }
-
   const setDone = (id: string, isDone: boolean) => {
     updateTasks.setDone(id, isDone)
   }
+  const removeTask = (id: string) => updateTasks.remove(id)
 
   return (
     <div className="App">
@@ -31,7 +31,11 @@ const App: React.FunctionComponent = () => {
       </header>
       <div className="container">
         <AddTaskBox onClickAddButton={addTask} />
-        <TaskList onToggleDone={setDone} tasks={tasks} />
+        <TaskList
+          onToggleDone={setDone}
+          onClickRemove={removeTask}
+          tasks={tasks}
+        />
       </div>
     </div>
   )
