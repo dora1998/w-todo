@@ -12,6 +12,15 @@ const AddTaskBox: React.FC<AddTaskBoxProps> = (props: AddTaskBoxProps) => {
     setText(event.currentTarget.value)
   }
   function handleClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    sendAddAction()
+  }
+  function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
+    if (event.keyCode === 13) {
+      sendAddAction()
+    }
+  }
+
+  function sendAddAction() {
     props.onClickAddButton(text)
     setText('')
   }
@@ -22,6 +31,7 @@ const AddTaskBox: React.FC<AddTaskBoxProps> = (props: AddTaskBoxProps) => {
         type="text"
         value={text}
         onChange={handleChange}
+        onKeyDown={handleKeyDown}
         placeholder="タスクを入力..."
       />
       <button className="button" onClick={handleClick}>
