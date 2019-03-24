@@ -25,3 +25,10 @@ li span.done {
     text-decoration: line-through;
     color: #aaa;
 }
+
+li .button.flat {
+    margin-right: 8px;
+}
+li .button.flat:last-child {
+    margin-right: 0px;
+}
