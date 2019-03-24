@@ -28,6 +28,8 @@ const App: React.FC = () => {
   const setDone = (id: string, isDone: boolean) =>
     updateTasks.setDone(id, isDone)
   const removeTask = (id: string) => updateTasks.remove(id)
+  const changeTaskName = (id: string, newText: string) =>
+    updateTasks.setName(id, newText)
 
   const handleFilterChange = (newValue: string) => setFilter(newValue)
 
@@ -49,6 +51,7 @@ const App: React.FC = () => {
         <TaskList
           onToggleDone={setDone}
           onClickRemove={removeTask}
+          onChangeTaskName={changeTaskName}
           tasks={filteredTasks}
         />
       </div>

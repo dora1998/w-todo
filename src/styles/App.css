@@ -43,6 +43,13 @@
 .button.flat:hover {
   background: #ddd;
 }
+.button.flat:disabled {
+  color: #aaa;
+  cursor: initial;
+}
+.button.flat:disabled:hover {
+  background: none;
+}
 .button.flat.red {
   color: rgb(167, 8, 8);
 }

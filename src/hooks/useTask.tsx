@@ -9,6 +9,7 @@ export interface Task {
 interface Functions {
   push: (item: Task) => void
   setDone: (id: string, isDone: boolean) => void
+  setName: (id: string, text: string) => void
   remove: (id: string) => void
 }
 export function useTasks(initialData: Task[]): [Task[], Functions] {
@@ -31,6 +32,19 @@ export function useTasks(initialData: Task[]): [Task[], Functions] {
     })
   }, [])
 
+  const setName = useCallback((id: string, text: string) => {
+    setTasks(oldTasks => {
+      const newTasks = [...oldTasks]
+      const taskIdx = newTasks.findIndex(task => task.id === id)
+      if (taskIdx === -1) {
+        return oldTasks
+      }
+
+      newTasks[taskIdx].name = text
+      return newTasks
+    })
+  }, [])
+
   const removeTask = useCallback((id: string) => {
     setTasks(oldTasks => {
       const newTasks = [...oldTasks]
@@ -44,5 +58,5 @@ export function useTasks(initialData: Task[]): [Task[], Functions] {
     })
   }, [])
 
-  return [tasks, { push, setDone, remove: removeTask }]
+  return [tasks, { push, setDone, setName, remove: removeTask }]
 }

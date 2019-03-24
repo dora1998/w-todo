@@ -20,6 +20,8 @@ li:last-child {
 }
 li > label {
     flex-grow: 1;
+    display: flex;
+    align-items: center;
 }
 li span.done {
     text-decoration: line-through;
