@@ -2,6 +2,7 @@ import * as React from 'react'
 import './styles/App.css'
 
 import { v1 as uuidv1 } from 'uuid'
+import FontAwesome from './FontAwesome'
 
 import AddTaskBox from './components/AddTaskBox'
 import FilterSwitch from './components/FilterSwitch'
@@ -9,6 +10,8 @@ import TaskList from './components/TaskList'
 
 import Filter from './Filter'
 import { Task, useTasks } from './hooks/useTask'
+
+FontAwesome.init()
 
 const App: React.FC = () => {
   const [tasks, updateTasks] = useTasks([])

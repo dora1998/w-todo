@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import * as React from 'react'
 import '../styles/TaskList.css'
 
@@ -39,6 +40,7 @@ const TaskList: React.FC<TaskListProps> = (props: TaskListProps) => {
         data-taskid={task.id}
         onClick={handleClickRemove}
       >
+        <FontAwesomeIcon icon="trash-alt" className="icon" />
         削除
       </button>
     </li>
