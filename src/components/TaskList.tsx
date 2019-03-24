@@ -1,6 +1,7 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import * as React from 'react'
 import '../styles/TaskList.css'
+
+import IconButton from './IconButton'
 
 import { Task } from '../hooks/useTask'
 
@@ -22,6 +23,13 @@ const TaskList: React.FC<TaskListProps> = (props: TaskListProps) => {
       props.onClickRemove(taskId.value)
     }
   }
+  const handleClickEdit = (event: React.FormEvent<HTMLButtonElement>) => {
+    const taskId = event.currentTarget.attributes.getNamedItem('data-taskid')
+    if (taskId) {
+      // TODO: 編集処理の実装
+      props.onClickRemove(taskId.value)
+    }
+  }
 
   const listItems = props.tasks.map(task => (
     <li key={task.id}>
@@ -35,14 +43,17 @@ const TaskList: React.FC<TaskListProps> = (props: TaskListProps) => {
         />
         <span className={task.isDone ? 'done' : ''}>{task.name}</span>
       </label>
-      <button
-        className="button red"
-        data-taskid={task.id}
+
+      <IconButton
+        elementParams={{ className: 'button flat', 'data-taskid': task.id }}
+        onClick={handleClickEdit}
+        icon="edit"
+      />
+      <IconButton
+        elementParams={{ className: 'button flat red', 'data-taskid': task.id }}
         onClick={handleClickRemove}
-      >
-        <FontAwesomeIcon icon="trash-alt" className="icon" />
-        削除
-      </button>
+        icon="trash-alt"
+      />
     </li>
   ))
   return <ul>{listItems}</ul>
