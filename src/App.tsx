@@ -10,7 +10,7 @@ import TaskList from './components/TaskList'
 import Filter from './Filter'
 import { Task, useTasks } from './hooks/useTask'
 
-const App: React.FunctionComponent = () => {
+const App: React.FC = () => {
   const [tasks, updateTasks] = useTasks([])
   const [filter, setFilter] = React.useState(Filter.ALL)
 

@@ -5,9 +5,7 @@ import '../styles/AddTaskBox.css'
 interface AddTaskBoxProps {
   onClickAddButton: (text: string) => void
 }
-const AddTaskBox: React.FunctionComponent<AddTaskBoxProps> = (
-  props: AddTaskBoxProps
-) => {
+const AddTaskBox: React.FC<AddTaskBoxProps> = (props: AddTaskBoxProps) => {
   const [text, setText] = React.useState('')
 
   function handleChange(event: React.FormEvent<HTMLInputElement>) {

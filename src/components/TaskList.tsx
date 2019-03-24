@@ -8,9 +8,7 @@ interface TaskListProps {
   onToggleDone: (id: string, isDone: boolean) => void
   onClickRemove: (id: string) => void
 }
-const TaskList: React.FunctionComponent<TaskListProps> = (
-  props: TaskListProps
-) => {
+const TaskList: React.FC<TaskListProps> = (props: TaskListProps) => {
   const handleCheckboxChange = (event: React.FormEvent<HTMLInputElement>) => {
     const taskId = event.currentTarget.attributes.getNamedItem('data-taskid')
     if (taskId) {
