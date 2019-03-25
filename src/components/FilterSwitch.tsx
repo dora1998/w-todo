@@ -1,7 +1,7 @@
 import * as React from 'react'
 import Filter from '../Filter'
 
-import '../styles/FilterSwitch.css'
+import styled from 'styled-components'
 
 const FilterItems = [
   [Filter.ALL, '全て'],
@@ -14,9 +14,7 @@ interface FilterSwitchProps {
   onChange: (selected: Filter) => void
 }
 
-const FilterSwitch: React.FC<FilterSwitchProps> = (
-  props: FilterSwitchProps
-) => {
+export default (props: FilterSwitchProps) => {
   const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
     const newVal = event.currentTarget.value
     props.onChange(newVal)
@@ -35,7 +33,30 @@ const FilterSwitch: React.FC<FilterSwitchProps> = (
     </label>
   ))
 
-  return <div className="filterswitch">{filterItems}</div>
+  return <FilterSwitch>{filterItems}</FilterSwitch>
 }
 
-export default FilterSwitch
+const FilterSwitch = styled.div`
+  width: 100%;
+  display: flex;
+  margin-top: 8px;
+
+  & > label {
+    flex-grow: 1;
+    margin: 0 16px;
+    cursor: pointer;
+  }
+
+  input {
+    display: none;
+  }
+  div {
+    text-align: center;
+    padding: 8px;
+  }
+  input:checked + div {
+    color: #fff;
+    background-color: #000;
+    border-radius: 16px;
+  }
+`

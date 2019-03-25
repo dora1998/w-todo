@@ -1,6 +1,5 @@
 import * as React from 'react'
-
-import '../styles/TaskEditBox.css'
+import styled from 'styled-components'
 
 interface TaskEditBoxProps {
   taskId: string
@@ -20,15 +19,17 @@ const TaskEditBox: React.FC<TaskEditBoxProps> = (props: TaskEditBoxProps) => {
   }
 
   return (
-    <input
-      type="text"
-      onChange={handleChange}
-      onKeyDown={handleKeyDown}
-      value={text}
-      placeholder="新しいタスク名..."
-      className="taskeditbox"
-    />
+    <EditBox onChange={handleChange} onKeyDown={handleKeyDown} value={text} />
   )
 }
+
+const EditBox = styled.input.attrs({
+  placeholder: '新しいタスク名...',
+  type: 'text'
+})`
+  flex-grow: 1;
+  margin-right: 16px;
+  font-size: 100%;
+`
 
 export default TaskEditBox

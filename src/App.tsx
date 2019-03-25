@@ -1,5 +1,5 @@
 import * as React from 'react'
-import './styles/App.css'
+import styles from 'styled-components'
 
 import { v1 as uuidv1 } from 'uuid'
 import FontAwesome from './FontAwesome'
@@ -41,10 +41,10 @@ const App: React.FC = () => {
   })
 
   return (
-    <div className="App">
-      <header>
+    <Container>
+      <Header>
         <h1>My Todo</h1>
-      </header>
+      </Header>
       <div className="container">
         <AddTaskBox onClickAddButton={addTask} />
         <FilterSwitch selected={filter} onChange={handleFilterChange} />
@@ -55,8 +55,20 @@ const App: React.FC = () => {
           tasks={filteredTasks}
         />
       </div>
-    </div>
+    </Container>
   )
 }
+
+const Container = styles.div`
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 8px;
+  box-sizing: border-box;
+`
+const Header = styles.header`
+  text-align: center;
+  display: block;
+`
 
 export default App

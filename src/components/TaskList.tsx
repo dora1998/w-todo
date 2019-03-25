@@ -1,5 +1,5 @@
 import * as React from 'react'
-import '../styles/TaskList.css'
+import styled from 'styled-components'
 
 import IconButton from './IconButton'
 import TaskEditBox from './TaskEditBox'
@@ -12,7 +12,7 @@ interface TaskListProps {
   onClickRemove: (id: string) => void
   onChangeTaskName: (id: string, newText: string) => void
 }
-const TaskList: React.FC<TaskListProps> = (props: TaskListProps) => {
+export default (props: TaskListProps) => {
   const [isEditing, setEditing] = React.useState({})
 
   const handleCheckboxChange = (event: React.FormEvent<HTMLInputElement>) => {
@@ -55,14 +55,16 @@ const TaskList: React.FC<TaskListProps> = (props: TaskListProps) => {
         />
       )
     } else {
-      return <span className={task.isDone ? 'done' : ''}>{task.name}</span>
+      return (
+        <TaskName className={task.isDone ? 'done' : ''}>{task.name}</TaskName>
+      )
     }
   }
 
   const listItems = props.tasks.map(task => {
     const nameView = getNameView(task)
     return (
-      <li key={task.id}>
+      <TaskItem key={task.id}>
         <label htmlFor={`check_${task.id}`}>
           <input
             id={`check_${task.id}`}
@@ -91,10 +93,46 @@ const TaskList: React.FC<TaskListProps> = (props: TaskListProps) => {
           onClick={handleClickRemove}
           icon="trash-alt"
         />
-      </li>
+      </TaskItem>
     )
   })
-  return <ul>{listItems}</ul>
+  return <TaskList>{listItems}</TaskList>
 }
 
-export default TaskList
+const TaskList = styled.ul`
+  margin: 0;
+  padding: 0;
+`
+const TaskItem = styled.li`
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 4px 8px;
+  border-bottom: 1px solid #aaa;
+
+  &:last-child {
+    border-bottom: none;
+  }
+  & > label {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  .button.flat {
+    margin-right: 8px;
+  }
+  .button.flat:last-child {
+    margin-right: 0px;
+  }
+`
+
+const TaskName = styled.span`
+  user-select: none;
+
+  &.done {
+    text-decoration: line-through;
+    color: #aaa;
+  }
+`
