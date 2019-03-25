@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 import IconButton from './IconButton'
 import TaskEditBox from './TaskEditBox'
+import TaskName from './TaskName'
 
 import { Task } from '../hooks/useTask'
 
@@ -11,6 +12,7 @@ interface TaskListProps {
   onToggleDone: (id: string, isDone: boolean) => void
   onClickRemove: (id: string) => void
   onChangeTaskName: (id: string, newText: string) => void
+  onClickTag: (tag: string) => void
 }
 export default (props: TaskListProps) => {
   const [isEditing, setEditing] = React.useState({})
@@ -55,9 +57,7 @@ export default (props: TaskListProps) => {
         />
       )
     } else {
-      return (
-        <TaskName className={task.isDone ? 'done' : ''}>{task.name}</TaskName>
-      )
+      return <TaskName task={task} onClickTag={props.onClickTag} />
     }
   }
 
@@ -65,7 +65,7 @@ export default (props: TaskListProps) => {
     const nameView = getNameView(task)
     return (
       <TaskItem key={task.id}>
-        <label htmlFor={`check_${task.id}`}>
+        <div className="nameDisplay">
           <input
             id={`check_${task.id}`}
             type="checkbox"
@@ -74,7 +74,7 @@ export default (props: TaskListProps) => {
             data-taskid={task.id}
           />
           {nameView}
-        </label>
+        </div>
 
         <IconButton
           elementParams={{
@@ -114,7 +114,7 @@ const TaskItem = styled.li`
   &:last-child {
     border-bottom: none;
   }
-  & > label {
+  .nameDisplay {
     flex-grow: 1;
     display: flex;
     align-items: center;
@@ -125,14 +125,5 @@ const TaskItem = styled.li`
   }
   .button.flat:last-child {
     margin-right: 0px;
-  }
-`
-
-const TaskName = styled.span`
-  user-select: none;
-
-  &.done {
-    text-decoration: line-through;
-    color: #aaa;
   }
 `

@@ -1,13 +1,18 @@
 import { useCallback, useState } from 'react'
 
+import { v1 as uuidv1 } from 'uuid'
+
+import TaskTag from '../utils/TaskTag'
+
 export interface Task {
   id: string
   name: string
   isDone: boolean
+  tags: string[]
 }
 
 interface Functions {
-  push: (item: Task) => void
+  add: (name: string) => void
   setDone: (id: string, isDone: boolean) => void
   setName: (id: string, text: string) => void
   remove: (id: string) => void
@@ -15,8 +20,17 @@ interface Functions {
 export function useTasks(initialData: Task[]): [Task[], Functions] {
   const [tasks, setTasks] = useState<Task[]>(initialData)
 
-  const push = useCallback((task: Task) => {
-    setTasks(oldTasks => [...oldTasks, task])
+  const addTask = useCallback((name: string) => {
+    setTasks(oldTasks => {
+      const tags = TaskTag.getTagsFromTask(name)
+      const task: Task = {
+        id: uuidv1(),
+        isDone: false,
+        name,
+        tags
+      }
+      return [...oldTasks, task]
+    })
   }, [])
 
   const setDone = useCallback((id: string, isDone: boolean) => {
@@ -41,6 +55,7 @@ export function useTasks(initialData: Task[]): [Task[], Functions] {
       }
 
       newTasks[taskIdx].name = text
+      newTasks[taskIdx].tags = TaskTag.getTagsFromTask(text)
       return newTasks
     })
   }, [])
@@ -58,5 +73,5 @@ export function useTasks(initialData: Task[]): [Task[], Functions] {
     })
   }, [])
 
-  return [tasks, { push, setDone, setName, remove: removeTask }]
+  return [tasks, { add: addTask, setDone, setName, remove: removeTask }]
 }
