@@ -1,11 +1,12 @@
 import * as React from 'react'
+import styled from 'styled-components'
 
-import '../styles/AddTaskBox.css'
+import TextButton from '../components/TextButton'
 
 interface AddTaskBoxProps {
   onClickAddButton: (text: string) => void
 }
-const AddTaskBox: React.FC<AddTaskBoxProps> = (props: AddTaskBoxProps) => {
+export default (props: AddTaskBoxProps) => {
   const [text, setText] = React.useState('')
 
   function handleChange(event: React.FormEvent<HTMLInputElement>) {
@@ -26,7 +27,7 @@ const AddTaskBox: React.FC<AddTaskBoxProps> = (props: AddTaskBoxProps) => {
   }
 
   return (
-    <div className="addtaskbox">
+    <AddTaskBox>
       <input
         type="text"
         value={text}
@@ -34,11 +35,22 @@ const AddTaskBox: React.FC<AddTaskBoxProps> = (props: AddTaskBoxProps) => {
         onKeyDown={handleKeyDown}
         placeholder="タスクを入力..."
       />
-      <button className="button" onClick={handleClick}>
-        作成
-      </button>
-    </div>
+      <TextButton elementParams={{ onClick: handleClick }} text="作成" />
+    </AddTaskBox>
   )
 }
 
-export default AddTaskBox
+const AddTaskBox = styled.div`
+  width: 600px;
+  max-width: 100%;
+  margin: 0 auto 16px;
+  display: flex;
+
+  input {
+    flex-grow: 1;
+    border: 2px solid #ccc;
+    font-size: 1.1em;
+    padding: 4px;
+    margin-right: 8px;
+  }
+`
