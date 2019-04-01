@@ -15,7 +15,7 @@ interface TaskListProps {
   onClickTag: (tag: string) => void
 }
 export default (props: TaskListProps) => {
-  const [isEditing, setEditing] = React.useState({})
+  const [editingId, setEditingId] = React.useState<null | string>(null)
 
   const handleCheckboxChange = (event: React.FormEvent<HTMLInputElement>) => {
     const taskId = event.currentTarget.attributes.getNamedItem('data-taskid')
@@ -32,23 +32,17 @@ export default (props: TaskListProps) => {
   const handleClickEdit = (event: React.FormEvent<HTMLButtonElement>) => {
     const taskId = event.currentTarget.attributes.getNamedItem('data-taskid')
     if (taskId) {
-      const newEditing = { ...isEditing }
-      if (newEditing[taskId.value] === undefined) {
-        newEditing[taskId.value] = true
-      }
-      setEditing(newEditing)
+      setEditingId(taskId.value)
     }
   }
   const handleFinishEdit = (taskId: string, newText: string) => {
     props.onChangeTaskName(taskId, newText)
 
-    const newEditing = { ...isEditing }
-    delete newEditing[taskId]
-    setEditing(newEditing)
+    setEditingId(null)
   }
 
   const getNameView = (task: Task) => {
-    if (isEditing[task.id] !== undefined) {
+    if (editingId === task.id) {
       return (
         <TaskEditBox
           taskId={task.id}
@@ -80,7 +74,7 @@ export default (props: TaskListProps) => {
           elementParams={{
             className: 'button flat',
             'data-taskid': task.id,
-            disabled: isEditing[task.id] !== undefined
+            disabled: editingId === task.id
           }}
           onClick={handleClickEdit}
           icon="edit"
