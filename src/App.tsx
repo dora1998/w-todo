@@ -27,7 +27,7 @@ const App: React.FC = () => {
   const changeTaskName = (id: string, newText: string) =>
     updateTasks.setName(id, newText)
 
-  const handleFilterChange = (newValue: string) => setFilter(newValue)
+  const handleFilterChange = (newValue: Filter) => setFilter(newValue)
   const handleClickTag = (tag: string) => setTagFilter(tag)
 
   let filteredTasks = tasks.filter(task => {
