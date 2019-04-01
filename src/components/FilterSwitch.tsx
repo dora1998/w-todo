@@ -16,7 +16,7 @@ interface FilterSwitchProps {
 
 export default (props: FilterSwitchProps) => {
   const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
-    const newVal = event.currentTarget.value
+    const newVal = event.currentTarget.value as Filter
     props.onChange(newVal)
   }
 
