@@ -41,7 +41,8 @@ export function useTasks(initialData: Task[]): [Task[], Functions] {
         return oldTasks
       }
 
-      newTasks[taskIdx].isDone = isDone
+      const taskObj = { ...newTasks[taskIdx], isDone }
+      newTasks[taskIdx] = taskObj
       return newTasks
     })
   }, [])
@@ -54,8 +55,12 @@ export function useTasks(initialData: Task[]): [Task[], Functions] {
         return oldTasks
       }
 
-      newTasks[taskIdx].name = text
-      newTasks[taskIdx].tags = TaskTag.getTagsFromTask(text)
+      const taskObj = {
+        ...newTasks[taskIdx],
+        name: text,
+        tags: TaskTag.getTagsFromTask(text)
+      }
+      newTasks[taskIdx] = taskObj
       return newTasks
     })
   }, [])
