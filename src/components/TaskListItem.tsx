@@ -5,6 +5,7 @@ import IconButton from './IconButton'
 import TaskEditBox from './TaskEditBox'
 import TaskName from './TaskName'
 
+import Color from 'src/shared/Color'
 import { Task } from '../hooks/useTask'
 
 interface TaskListItemProps {
@@ -42,29 +43,25 @@ export default (props: TaskListItemProps) => {
   const nameView = getNameView(props.task)
   return (
     <TaskItem key={props.task.id}>
-      <div className="nameDisplay">
+      <NameDisplay>
         <input
           type="checkbox"
           checked={props.task.isDone}
           onChange={handleCheckboxChange}
         />
         {nameView}
-      </div>
+      </NameDisplay>
 
       <IconButton
-        elementParams={{
-          className: 'button flat',
-          disabled: props.isEditing
-        }}
         onClick={handleClickEdit}
         icon="edit"
+        disabled={props.isEditing}
+        margin="0 8px 0 0"
       />
       <IconButton
-        elementParams={{
-          className: 'button flat red'
-        }}
         onClick={handleClickRemove}
         icon="trash-alt"
+        color={Color.RED}
       />
     </TaskItem>
   )
@@ -81,16 +78,9 @@ const TaskItem = styled.li`
   &:last-child {
     border-bottom: none;
   }
-  .nameDisplay {
-    flex-grow: 1;
-    display: flex;
-    align-items: center;
-  }
-
-  .button.flat {
-    margin-right: 8px;
-  }
-  .button.flat:last-child {
-    margin-right: 0px;
-  }
+`
+const NameDisplay = styled.div`
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
 `
