@@ -28,13 +28,7 @@ export default (props: AddTaskBoxProps) => {
 
   return (
     <AddTaskBox>
-      <input
-        type="text"
-        value={text}
-        onChange={handleChange}
-        onKeyDown={handleKeyDown}
-        placeholder="タスクを入力..."
-      />
+      <Input value={text} onChange={handleChange} onKeyDown={handleKeyDown} />
       <TextButton elementParams={{ onClick: handleClick }} text="作成" />
     </AddTaskBox>
   )
@@ -45,12 +39,14 @@ const AddTaskBox = styled.div`
   max-width: 100%;
   margin: 0 auto 16px;
   display: flex;
-
-  input {
-    flex-grow: 1;
-    border: 2px solid #ccc;
-    font-size: 1.1em;
-    padding: 4px;
-    margin-right: 8px;
-  }
+`
+const Input = styled.input.attrs({
+  placeholder: 'タスクを入力...',
+  type: 'text'
+})`
+  flex-grow: 1;
+  border: 2px solid #ccc;
+  font-size: 1.1em;
+  padding: 4px;
+  margin-right: 8px;
 `
