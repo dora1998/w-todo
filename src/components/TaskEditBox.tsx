@@ -1,20 +1,21 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
+import { Task } from 'src/hooks/useTask'
+
 interface TaskEditBoxProps {
-  taskId: string
-  initialText: string
-  onFinishEdit: (taskId: string, newText: string) => void
+  task: Task
+  onFinishEdit: (newText: string) => void
 }
 const TaskEditBox: React.FC<TaskEditBoxProps> = (props: TaskEditBoxProps) => {
-  const [text, setText] = React.useState(props.initialText)
+  const [text, setText] = React.useState(props.task.name)
 
   function handleChange(event: React.FormEvent<HTMLInputElement>) {
     setText(event.currentTarget.value)
   }
   function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
     if (event.keyCode === 13) {
-      props.onFinishEdit(props.taskId, text)
+      props.onFinishEdit(text)
     }
   }
 
