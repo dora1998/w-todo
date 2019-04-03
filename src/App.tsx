@@ -1,15 +1,15 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-import FontAwesome from './FontAwesome'
+import FontAwesome from './utils/FontAwesome'
 
 import AddTaskBox from './components/AddTaskBox'
 import FilterSwitch from './components/FilterSwitch'
 import TagFilterBox from './components/TagFilterBox'
 import TaskList from './components/TaskList'
 
-import Filter from './Filter'
 import { useTasks } from './hooks/useTask'
+import Filter from './utils/Filter'
 
 import TaskTag from './utils/TaskTag'
 

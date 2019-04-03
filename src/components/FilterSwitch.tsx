@@ -1,5 +1,5 @@
 import * as React from 'react'
-import Filter from '../Filter'
+import Filter from '../utils/Filter'
 
 import styled from 'styled-components'
 
